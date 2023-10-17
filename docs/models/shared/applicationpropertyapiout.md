@@ -1,0 +1,13 @@
+# ApplicationPropertyAPIOut
+
+The parent application of the record
+
+
+## Fields
+
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            | Example                                                                                |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ID`                                                                                   | **string*                                                                              | :heavy_minus_sign:                                                                     | The unique ID of this Risk Cloud resource                                              | a1b2c3d4                                                                               |
+| `Name`                                                                                 | **string*                                                                              | :heavy_minus_sign:                                                                     | The name of the application                                                            | Cyber Risk Management Application                                                      |
+| `Object`                                                                               | **string*                                                                              | :heavy_minus_sign:                                                                     | Identifies the type of object this data represents                                     | application                                                                            |
+| `Type`                                                                                 | [*ApplicationPropertyAPIOutType](../../models/shared/applicationpropertyapiouttype.md) | :heavy_minus_sign:                                                                     | The type of Risk Cloud application                                                     | CONTROLS_COMPLIANCE                                                                    |
