@@ -21,6 +21,11 @@
       "basic": []
     }
   ],
+  "servers": [
+    {
+      "url": "http://localhost"
+    }
+  ],
   "tags": [
     {
       "name": "Authentication",
