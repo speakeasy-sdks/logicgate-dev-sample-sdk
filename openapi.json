@@ -2688,13 +2688,11 @@
     "securitySchemes": {
       "bearer": {
         "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "API Token"
+        "scheme": "bearer"
       },
       "basic": {
         "type": "http",
-        "scheme": "basic",
-        "bearerFormat": "Basic Token"
+        "scheme": "basic"
       }
     }
   }
