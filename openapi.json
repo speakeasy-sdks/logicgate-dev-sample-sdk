@@ -32,12 +32,12 @@
         "methodNameOverride": "create"
     },
     {
-      "operationId": "^readAll.*",
-      "methodNameOverride": "readAll"
-    },
-    {
       "operationId": "^read.*",
       "methodNameOverride": "read"
+    },
+    {
+      "operationId": "^readAll.*",
+      "methodNameOverride": "readAll"
     },
     {
       "operationId": "^delete.*",
