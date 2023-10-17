@@ -26,6 +26,28 @@
       "url": "http://localhost"
     }
   ],
+  "x-speakeasy-name-override": [
+    {
+        "operationId": "^create.*",
+        "methodNameOverride": "create"
+    },
+    {
+      "operationId": "^readAll.*",
+      "methodNameOverride": "readAll"
+    },
+    {
+      "operationId": "^read.*",
+      "methodNameOverride": "read"
+    },
+    {
+      "operationId": "^delete.*",
+      "methodNameOverride": "delete"
+    },
+    {
+      "operationId": "^update.*",
+      "methodNameOverride": "update"
+    }
+],
   "tags": [
     {
       "name": "Authentication",
