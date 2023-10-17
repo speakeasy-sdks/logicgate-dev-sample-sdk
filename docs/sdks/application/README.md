@@ -7,13 +7,13 @@ An [Application](https://help.logicgate.com/hc/en-us/articles/4402674055572-Crea
 
 ### Available Operations
 
-* [CreateApplication](#createapplication) - Create an application
-* [DeleteApplication](#deleteapplication) - Delete an application
-* [ReadAllApplications](#readallapplications) - Retrieve applications
-* [ReadApplication](#readapplication) - Retrieve an application
-* [Update1](#update1) - Update an application
+* [Create](#create) - Create an application
+* [Delete](#delete) - Delete an application
+* [Read](#read) - Retrieve an application
+* [ReadAll](#readall) - Retrieve applications
+* [Update](#update) - Update an application
 
-## CreateApplication
+## Create
 
 **Permissions:** [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 
@@ -43,7 +43,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Application.CreateApplication(ctx, operations.CreateApplicationRequest{
+    res, err := s.Application.Create(ctx, operations.CreateApplicationRequest{
         ApplicationAPICreateIn: shared.ApplicationAPICreateIn{
             Color: logicgatedevsamplesdk.String("#00a3de"),
             Icon: shared.ApplicationAPICreateInIconCubes.ToPointer(),
@@ -74,7 +74,7 @@ func main() {
 **[*operations.CreateApplicationResponse](../../models/operations/createapplicationresponse.md), error**
 
 
-## DeleteApplication
+## Delete
 
 **Permissions:** [Build Access to application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 
@@ -104,7 +104,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Application.DeleteApplication(ctx, operations.DeleteApplicationRequest{
+    res, err := s.Application.Delete(ctx, operations.DeleteApplicationRequest{
         ID: "<ID>",
     })
     if err != nil {
@@ -130,61 +130,7 @@ func main() {
 **[*operations.DeleteApplicationResponse](../../models/operations/deleteapplicationresponse.md), error**
 
 
-## ReadAllApplications
-
-**Permissions:** [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
-
-Retrieve a page of all applications that the current user has [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications) to.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
-)
-
-func main() {
-    s := logicgatedevsamplesdk.New(
-        logicgatedevsamplesdk.WithSecurity(shared.Security{
-            Basic: &shared.SchemeBasic{
-                Password: "",
-                Username: "",
-            },
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.Application.ReadAllApplications(ctx, operations.ReadAllApplicationsRequest{})
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.PageModelOutApplicationAPIOut != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
-| `request`                                                                                      | [operations.ReadAllApplicationsRequest](../../models/operations/readallapplicationsrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
-
-
-### Response
-
-**[*operations.ReadAllApplicationsResponse](../../models/operations/readallapplicationsresponse.md), error**
-
-
-## ReadApplication
+## Read
 
 **Permissions:** [Build Access to application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 
@@ -214,7 +160,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Application.ReadApplication(ctx, operations.ReadApplicationRequest{
+    res, err := s.Application.Read(ctx, operations.ReadApplicationRequest{
         ID: "<ID>",
     })
     if err != nil {
@@ -240,7 +186,61 @@ func main() {
 **[*operations.ReadApplicationResponse](../../models/operations/readapplicationresponse.md), error**
 
 
-## Update1
+## ReadAll
+
+**Permissions:** [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
+
+Retrieve a page of all applications that the current user has [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications) to.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
+	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
+)
+
+func main() {
+    s := logicgatedevsamplesdk.New(
+        logicgatedevsamplesdk.WithSecurity(shared.Security{
+            Basic: &shared.SchemeBasic{
+                Password: "",
+                Username: "",
+            },
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Application.ReadAll(ctx, operations.ReadAllApplicationsRequest{})
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.PageModelOutApplicationAPIOut != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.ReadAllApplicationsRequest](../../models/operations/readallapplicationsrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+
+
+### Response
+
+**[*operations.ReadAllApplicationsResponse](../../models/operations/readallapplicationsresponse.md), error**
+
+
+## Update
 
 **Permissions:** [Build Access to application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 
@@ -270,7 +270,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Application.Update1(ctx, operations.Update1Request{
+    res, err := s.Application.Update(ctx, operations.Update1Request{
         ApplicationAPIUpdateIn: shared.ApplicationAPIUpdateIn{
             Color: logicgatedevsamplesdk.String("#00a3de"),
             Icon: shared.ApplicationAPIUpdateInIconCubes.ToPointer(),

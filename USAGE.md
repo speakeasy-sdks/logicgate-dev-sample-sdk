@@ -23,7 +23,7 @@ func main() {
 	)
 
 	ctx := context.Background()
-	res, err := s.Application.CreateApplication(ctx, operations.CreateApplicationRequest{
+	res, err := s.Application.Create(ctx, operations.CreateApplicationRequest{
 		ApplicationAPICreateIn: shared.ApplicationAPICreateIn{
 			Color: logicgatedevsamplesdk.String("#00a3de"),
 			Icon:  shared.ApplicationAPICreateInIconCubes.ToPointer(),

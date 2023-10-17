@@ -7,9 +7,9 @@ A [Record](https://help.logicgate.com/hc/en-us/articles/4402683104020-Complete-a
 
 ### Available Operations
 
-* [ReadAllRecords](#readallrecords) - Retrieve records
+* [ReadAll](#readall) - Retrieve records
 
-## ReadAllRecords
+## ReadAll
 
 **Permissions:** Authenticated User
 
@@ -39,7 +39,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Record.ReadAllRecords(ctx, operations.ReadAllRecordsRequest{})
+    res, err := s.Record.ReadAll(ctx, operations.ReadAllRecordsRequest{})
     if err != nil {
         log.Fatal(err)
     }

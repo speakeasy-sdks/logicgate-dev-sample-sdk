@@ -7,13 +7,13 @@ A [Workflow](https://help.logicgate.com/hc/en-us/articles/4402683108756-Create-a
 
 ### Available Operations
 
-* [CreateWorkflow](#createworkflow) - Create a workflow
-* [DeleteWorkflow](#deleteworkflow) - Delete a workflow
-* [ReadAllWorkflows](#readallworkflows) - Retrieve workflows
-* [ReadWorkflow](#readworkflow) - Retrieve a workflow
-* [UpdateWorkflow](#updateworkflow) - Update a workflow
+* [Create](#create) - Create a workflow
+* [Delete](#delete) - Delete a workflow
+* [Read](#read) - Retrieve a workflow
+* [ReadAll](#readall) - Retrieve workflows
+* [Update](#update) - Update a workflow
 
-## CreateWorkflow
+## Create
 
 **Permissions:** [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 
@@ -43,7 +43,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Workflow.CreateWorkflow(ctx, operations.CreateWorkflowRequest{
+    res, err := s.Workflow.Create(ctx, operations.CreateWorkflowRequest{
         WorkflowAPICreateIn: shared.WorkflowAPICreateIn{
             ApplicationID: "a1b2c3d4",
             Name: "Risk Assessments",
@@ -75,7 +75,7 @@ func main() {
 **[*operations.CreateWorkflowResponse](../../models/operations/createworkflowresponse.md), error**
 
 
-## DeleteWorkflow
+## Delete
 
 **Permissions:** [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 
@@ -105,7 +105,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Workflow.DeleteWorkflow(ctx, operations.DeleteWorkflowRequest{
+    res, err := s.Workflow.Delete(ctx, operations.DeleteWorkflowRequest{
         ID: "<ID>",
     })
     if err != nil {
@@ -131,61 +131,7 @@ func main() {
 **[*operations.DeleteWorkflowResponse](../../models/operations/deleteworkflowresponse.md), error**
 
 
-## ReadAllWorkflows
-
-**Permissions:** [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
-
-Retrieve a page of all workflows that the current user has [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications) to.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
-)
-
-func main() {
-    s := logicgatedevsamplesdk.New(
-        logicgatedevsamplesdk.WithSecurity(shared.Security{
-            Basic: &shared.SchemeBasic{
-                Password: "",
-                Username: "",
-            },
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.Workflow.ReadAllWorkflows(ctx, operations.ReadAllWorkflowsRequest{})
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.PageModelOutWorkflowAPIOut != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.ReadAllWorkflowsRequest](../../models/operations/readallworkflowsrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-
-
-### Response
-
-**[*operations.ReadAllWorkflowsResponse](../../models/operations/readallworkflowsresponse.md), error**
-
-
-## ReadWorkflow
+## Read
 
 **Permissions:** [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 
@@ -215,7 +161,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Workflow.ReadWorkflow(ctx, operations.ReadWorkflowRequest{
+    res, err := s.Workflow.Read(ctx, operations.ReadWorkflowRequest{
         ID: "<ID>",
     })
     if err != nil {
@@ -241,7 +187,61 @@ func main() {
 **[*operations.ReadWorkflowResponse](../../models/operations/readworkflowresponse.md), error**
 
 
-## UpdateWorkflow
+## ReadAll
+
+**Permissions:** [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
+
+Retrieve a page of all workflows that the current user has [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications) to.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
+	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
+)
+
+func main() {
+    s := logicgatedevsamplesdk.New(
+        logicgatedevsamplesdk.WithSecurity(shared.Security{
+            Basic: &shared.SchemeBasic{
+                Password: "",
+                Username: "",
+            },
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Workflow.ReadAll(ctx, operations.ReadAllWorkflowsRequest{})
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.PageModelOutWorkflowAPIOut != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.ReadAllWorkflowsRequest](../../models/operations/readallworkflowsrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+
+
+### Response
+
+**[*operations.ReadAllWorkflowsResponse](../../models/operations/readallworkflowsresponse.md), error**
+
+
+## Update
 
 **Permissions:** [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 
@@ -271,7 +271,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Workflow.UpdateWorkflow(ctx, operations.UpdateWorkflowRequest{
+    res, err := s.Workflow.Update(ctx, operations.UpdateWorkflowRequest{
         WorkflowAPIUpdateIn: shared.WorkflowAPIUpdateIn{
             Name: logicgatedevsamplesdk.String("Risk Assessments"),
             RecordPrefix: logicgatedevsamplesdk.String("Assessment"),

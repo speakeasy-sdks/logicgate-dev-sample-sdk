@@ -7,13 +7,13 @@ A [Step](https://help.logicgate.com/hc/en-us/articles/4402674059668-Create-a-Ste
 
 ### Available Operations
 
-* [CreateStep](#createstep) - Create a step
-* [DeleteStep](#deletestep) - Delete a step
-* [ReadAllSteps](#readallsteps) - Retrieve steps
-* [ReadStep](#readstep) - Retrieve a step
+* [Create](#create) - Create a step
+* [Delete](#delete) - Delete a step
+* [Read](#read) - Retrieve a step
+* [ReadAll](#readall) - Retrieve steps
 * [Update](#update) - Update a step
 
-## CreateStep
+## Create
 
 **Permissions:** [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 
@@ -43,7 +43,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Step.CreateStep(ctx, operations.CreateStepRequest{
+    res, err := s.Step.Create(ctx, operations.CreateStepRequest{
         StepAPICreateIn: shared.StepAPICreateIn{
             AssignableUserType: shared.StepAPICreateInAssignableUserTypeAppUsers.ToPointer(),
             EnableComments: logicgatedevsamplesdk.Bool(false),
@@ -77,7 +77,7 @@ func main() {
 **[*operations.CreateStepResponse](../../models/operations/createstepresponse.md), error**
 
 
-## DeleteStep
+## Delete
 
 **Permissions:** [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 
@@ -107,7 +107,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Step.DeleteStep(ctx, operations.DeleteStepRequest{
+    res, err := s.Step.Delete(ctx, operations.DeleteStepRequest{
         ID: "<ID>",
     })
     if err != nil {
@@ -133,61 +133,7 @@ func main() {
 **[*operations.DeleteStepResponse](../../models/operations/deletestepresponse.md), error**
 
 
-## ReadAllSteps
-
-**Permissions:** [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
-
-Retrieve a page of all steps that the current user has [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications) to.
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"context"
-	"log"
-	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
-)
-
-func main() {
-    s := logicgatedevsamplesdk.New(
-        logicgatedevsamplesdk.WithSecurity(shared.Security{
-            Basic: &shared.SchemeBasic{
-                Password: "",
-                Username: "",
-            },
-        }),
-    )
-
-    ctx := context.Background()
-    res, err := s.Step.ReadAllSteps(ctx, operations.ReadAllStepsRequest{})
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    if res.PageModelOutStepAPIOut != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [operations.ReadAllStepsRequest](../../models/operations/readallstepsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-
-
-### Response
-
-**[*operations.ReadAllStepsResponse](../../models/operations/readallstepsresponse.md), error**
-
-
-## ReadStep
+## Read
 
 **Permissions:** [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 
@@ -217,7 +163,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Step.ReadStep(ctx, operations.ReadStepRequest{
+    res, err := s.Step.Read(ctx, operations.ReadStepRequest{
         ID: "<ID>",
     })
     if err != nil {
@@ -241,6 +187,60 @@ func main() {
 ### Response
 
 **[*operations.ReadStepResponse](../../models/operations/readstepresponse.md), error**
+
+
+## ReadAll
+
+**Permissions:** [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
+
+Retrieve a page of all steps that the current user has [Build Access to parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications) to.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	"log"
+	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
+	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
+	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
+)
+
+func main() {
+    s := logicgatedevsamplesdk.New(
+        logicgatedevsamplesdk.WithSecurity(shared.Security{
+            Basic: &shared.SchemeBasic{
+                Password: "",
+                Username: "",
+            },
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Step.ReadAll(ctx, operations.ReadAllStepsRequest{})
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    if res.PageModelOutStepAPIOut != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.ReadAllStepsRequest](../../models/operations/readallstepsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+
+
+### Response
+
+**[*operations.ReadAllStepsResponse](../../models/operations/readallstepsresponse.md), error**
 
 
 ## Update

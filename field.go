@@ -26,11 +26,11 @@ func newField(sdkConfig sdkConfiguration) *field {
 	}
 }
 
-// ReadAllFields - Retrieve fields
+// ReadAll - Retrieve fields
 // **Permissions:** [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 //
 // Retrieve a page of all fields whose parent application the current user has [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications) to.
-func (s *field) ReadAllFields(ctx context.Context, request operations.ReadAllFieldsRequest) (*operations.ReadAllFieldsResponse, error) {
+func (s *field) ReadAll(ctx context.Context, request operations.ReadAllFieldsRequest) (*operations.ReadAllFieldsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/fields"
 

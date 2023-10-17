@@ -26,11 +26,11 @@ func newRecord(sdkConfig sdkConfiguration) *record {
 	}
 }
 
-// ReadAllRecords - Retrieve records
+// ReadAll - Retrieve records
 // **Permissions:** Authenticated User
 //
 // Retrieve a page of all records that the current user has [Read or Write access](https://help.logicgate.com/hc/en-us/articles/4402683227156-Permission-Sets-) to.
-func (s *record) ReadAllRecords(ctx context.Context, request operations.ReadAllRecordsRequest) (*operations.ReadAllRecordsResponse, error) {
+func (s *record) ReadAll(ctx context.Context, request operations.ReadAllRecordsRequest) (*operations.ReadAllRecordsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/records"
 

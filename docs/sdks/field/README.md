@@ -7,9 +7,9 @@ A [Field](https://help.logicgate.com/hc/en-us/articles/4402674064020-Create-Fiel
 
 ### Available Operations
 
-* [ReadAllFields](#readallfields) - Retrieve fields
+* [ReadAll](#readall) - Retrieve fields
 
-## ReadAllFields
+## ReadAll
 
 **Permissions:** [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 
@@ -39,7 +39,7 @@ func main() {
     )
 
     ctx := context.Background()
-    res, err := s.Field.ReadAllFields(ctx, operations.ReadAllFieldsRequest{})
+    res, err := s.Field.ReadAll(ctx, operations.ReadAllFieldsRequest{})
     if err != nil {
         log.Fatal(err)
     }
