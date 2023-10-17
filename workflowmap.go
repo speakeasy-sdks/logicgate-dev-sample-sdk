@@ -30,7 +30,11 @@ func newWorkflowMap(sdkConfig sdkConfiguration) *workflowMap {
 // **Permissions:** [Build Access to parent applications](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 //
 // Create a workflow map from a JSON request body.
-func (s *workflowMap) Create(ctx context.Context, request operations.CreateWorkflowMapRequest) (*operations.CreateWorkflowMapResponse, error) {
+func (s *workflowMap) Create(ctx context.Context, workflowMapAPICreateIn shared.WorkflowMapAPICreateIn) (*operations.CreateWorkflowMapResponse, error) {
+	request := operations.CreateWorkflowMapRequest{
+		WorkflowMapAPICreateIn: workflowMapAPICreateIn,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/workflow-maps"
 
@@ -103,7 +107,11 @@ func (s *workflowMap) Create(ctx context.Context, request operations.CreateWorkf
 // **Permissions:** [Build Access to a parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 //
 // Delete a workflow map specified by the ID in the URL path.
-func (s *workflowMap) Delete(ctx context.Context, request operations.DeleteWorkflowMapRequest) (*operations.DeleteWorkflowMapResponse, error) {
+func (s *workflowMap) Delete(ctx context.Context, id string) (*operations.DeleteWorkflowMapResponse, error) {
+	request := operations.DeleteWorkflowMapRequest{
+		ID: id,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/workflow-maps/{id}", request, nil)
 	if err != nil {
@@ -169,7 +177,11 @@ func (s *workflowMap) Delete(ctx context.Context, request operations.DeleteWorkf
 // **Permissions:** [Build Access to a parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 //
 // Retrieve a workflow map specified by the ID in the URL path.
-func (s *workflowMap) Read(ctx context.Context, request operations.ReadWorkflowMapRequest) (*operations.ReadWorkflowMapResponse, error) {
+func (s *workflowMap) Read(ctx context.Context, id string) (*operations.ReadWorkflowMapResponse, error) {
+	request := operations.ReadWorkflowMapRequest{
+		ID: id,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/workflow-maps/{id}", request, nil)
 	if err != nil {
@@ -235,7 +247,13 @@ func (s *workflowMap) Read(ctx context.Context, request operations.ReadWorkflowM
 // **Permissions:** [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 //
 // Retrieve a page of all workflow maps that the current user has [Build Access to a parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications) to.
-func (s *workflowMap) ReadAll(ctx context.Context, request operations.ReadAllWorkflowMapsRequest) (*operations.ReadAllWorkflowMapsResponse, error) {
+func (s *workflowMap) ReadAll(ctx context.Context, page *int, size *int, workflowID *string) (*operations.ReadAllWorkflowMapsResponse, error) {
+	request := operations.ReadAllWorkflowMapsRequest{
+		Page:       page,
+		Size:       size,
+		WorkflowID: workflowID,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/workflow-maps"
 
@@ -302,7 +320,12 @@ func (s *workflowMap) ReadAll(ctx context.Context, request operations.ReadAllWor
 // **Permissions:** [Build Access to a parent application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 //
 // Update a workflow map specified by the ID in the URL path from a JSON request body. Only present properties with non-empty values are updated.
-func (s *workflowMap) Update(ctx context.Context, request operations.UpdateWorkflowMapRequest) (*operations.UpdateWorkflowMapResponse, error) {
+func (s *workflowMap) Update(ctx context.Context, workflowMapAPIUpdateIn shared.WorkflowMapAPIUpdateIn, id string) (*operations.UpdateWorkflowMapResponse, error) {
+	request := operations.UpdateWorkflowMapRequest{
+		WorkflowMapAPIUpdateIn: workflowMapAPIUpdateIn,
+		ID:                     id,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/workflow-maps/{id}", request, nil)
 	if err != nil {

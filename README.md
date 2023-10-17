@@ -22,7 +22,6 @@ package main
 import (
 	"context"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
 	"log"
 )
@@ -37,15 +36,15 @@ func main() {
 		}),
 	)
 
+	applicationAPICreateIn := shared.ApplicationAPICreateIn{
+		Color: logicgatedevsamplesdk.String("#00a3de"),
+		Icon:  shared.ApplicationAPICreateInIconCubes.ToPointer(),
+		Name:  "Cyber Risk Management Application",
+		Type:  shared.ApplicationAPICreateInTypeControlsCompliance.ToPointer(),
+	}
+
 	ctx := context.Background()
-	res, err := s.Application.Create(ctx, operations.CreateApplicationRequest{
-		ApplicationAPICreateIn: shared.ApplicationAPICreateIn{
-			Color: logicgatedevsamplesdk.String("#00a3de"),
-			Icon:  shared.ApplicationAPICreateInIconCubes.ToPointer(),
-			Name:  "Cyber Risk Management Application",
-			Type:  shared.ApplicationAPICreateInTypeControlsCompliance.ToPointer(),
-		},
-	})
+	res, err := s.Application.Create(ctx, applicationAPICreateIn)
 	if err != nil {
 		log.Fatal(err)
 	}

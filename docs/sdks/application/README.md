@@ -29,7 +29,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -42,15 +41,16 @@ func main() {
         }),
     )
 
+
+    applicationAPICreateIn := shared.ApplicationAPICreateIn{
+        Color: logicgatedevsamplesdk.String("#00a3de"),
+        Icon: shared.ApplicationAPICreateInIconCubes.ToPointer(),
+        Name: "Cyber Risk Management Application",
+        Type: shared.ApplicationAPICreateInTypeControlsCompliance.ToPointer(),
+    }
+
     ctx := context.Background()
-    res, err := s.Application.Create(ctx, operations.CreateApplicationRequest{
-        ApplicationAPICreateIn: shared.ApplicationAPICreateIn{
-            Color: logicgatedevsamplesdk.String("#00a3de"),
-            Icon: shared.ApplicationAPICreateInIconCubes.ToPointer(),
-            Name: "Cyber Risk Management Application",
-            Type: shared.ApplicationAPICreateInTypeControlsCompliance.ToPointer(),
-        },
-    })
+    res, err := s.Application.Create(ctx, applicationAPICreateIn)
     if err != nil {
         log.Fatal(err)
     }
@@ -63,10 +63,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `request`                                                                                  | [operations.CreateApplicationRequest](../../models/operations/createapplicationrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `applicationAPICreateIn`                                                       | [shared.ApplicationAPICreateIn](../../models/shared/applicationapicreatein.md) | :heavy_check_mark:                                                             | N/A                                                                            |
 
 
 ### Response
@@ -90,7 +90,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -103,10 +102,11 @@ func main() {
         }),
     )
 
+
+    var id string = "program"
+
     ctx := context.Background()
-    res, err := s.Application.Delete(ctx, operations.DeleteApplicationRequest{
-        ID: "<ID>",
-    })
+    res, err := s.Application.Delete(ctx, id)
     if err != nil {
         log.Fatal(err)
     }
@@ -119,10 +119,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `request`                                                                                  | [operations.DeleteApplicationRequest](../../models/operations/deleteapplicationrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | The unique ID of the application                      |
 
 
 ### Response
@@ -146,7 +146,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -159,10 +158,11 @@ func main() {
         }),
     )
 
+
+    var id string = "gadzooks"
+
     ctx := context.Background()
-    res, err := s.Application.Read(ctx, operations.ReadApplicationRequest{
-        ID: "<ID>",
-    })
+    res, err := s.Application.Read(ctx, id)
     if err != nil {
         log.Fatal(err)
     }
@@ -175,10 +175,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.ReadApplicationRequest](../../models/operations/readapplicationrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | The unique ID of the application                      |
 
 
 ### Response
@@ -202,7 +202,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -215,8 +214,13 @@ func main() {
         }),
     )
 
+
+    var page *int = 853380
+
+    var size *int = 87498
+
     ctx := context.Background()
-    res, err := s.Application.ReadAll(ctx, operations.ReadAllApplicationsRequest{})
+    res, err := s.Application.ReadAll(ctx, page, size)
     if err != nil {
         log.Fatal(err)
     }
@@ -229,10 +233,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
-| `request`                                                                                      | [operations.ReadAllApplicationsRequest](../../models/operations/readallapplicationsrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                                     | :heavy_check_mark:                                                                                        | The context to use for the request.                                                                       |
+| `page`                                                                                                    | **int*                                                                                                    | :heavy_minus_sign:                                                                                        | The zero-indexed page number (must not be less than 0, defaults to 0)                                     |
+| `size`                                                                                                    | **int*                                                                                                    | :heavy_minus_sign:                                                                                        | The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20) |
 
 
 ### Response
@@ -256,7 +261,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -269,18 +273,20 @@ func main() {
         }),
     )
 
+
+    applicationAPIUpdateIn := shared.ApplicationAPIUpdateIn{
+        Color: logicgatedevsamplesdk.String("#00a3de"),
+        Icon: shared.ApplicationAPIUpdateInIconCubes.ToPointer(),
+        Live: logicgatedevsamplesdk.Bool(false),
+        Name: logicgatedevsamplesdk.String("Cyber Risk Management Application"),
+        RestrictBuildAccess: logicgatedevsamplesdk.Bool(false),
+        Type: shared.ApplicationAPIUpdateInTypeControlsCompliance.ToPointer(),
+    }
+
+    var id string = "Van"
+
     ctx := context.Background()
-    res, err := s.Application.Update(ctx, operations.Update1Request{
-        ApplicationAPIUpdateIn: shared.ApplicationAPIUpdateIn{
-            Color: logicgatedevsamplesdk.String("#00a3de"),
-            Icon: shared.ApplicationAPIUpdateInIconCubes.ToPointer(),
-            Live: logicgatedevsamplesdk.Bool(false),
-            Name: logicgatedevsamplesdk.String("Cyber Risk Management Application"),
-            RestrictBuildAccess: logicgatedevsamplesdk.Bool(false),
-            Type: shared.ApplicationAPIUpdateInTypeControlsCompliance.ToPointer(),
-        },
-        ID: "<ID>",
-    })
+    res, err := s.Application.Update(ctx, applicationAPIUpdateIn, id)
     if err != nil {
         log.Fatal(err)
     }
@@ -293,10 +299,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
-| `request`                                                              | [operations.Update1Request](../../models/operations/update1request.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `applicationAPIUpdateIn`                                                       | [shared.ApplicationAPIUpdateIn](../../models/shared/applicationapiupdatein.md) | :heavy_check_mark:                                                             | N/A                                                                            |
+| `id`                                                                           | *string*                                                                       | :heavy_check_mark:                                                             | The unique ID of the application                                               |
 
 
 ### Response

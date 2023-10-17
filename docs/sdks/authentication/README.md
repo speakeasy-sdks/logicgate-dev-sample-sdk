@@ -37,7 +37,7 @@ func main() {
         }
 
     ctx := context.Background()
-    res, err := s.Authentication.GetAPIToken(ctx, operations.GetAPITokenRequest{}, operationSecurity)
+    res, err := s.Authentication.GetAPIToken(ctx, operationSecurity)
     if err != nil {
         log.Fatal(err)
     }
@@ -53,7 +53,6 @@ func main() {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [operations.GetAPITokenRequest](../../models/operations/getapitokenrequest.md)   | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `security`                                                                       | [operations.GetAPITokenSecurity](../../models/operations/getapitokensecurity.md) | :heavy_check_mark:                                                               | The security requirements to use for the request.                                |
 
 

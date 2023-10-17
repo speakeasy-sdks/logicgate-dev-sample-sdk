@@ -29,7 +29,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -42,14 +41,15 @@ func main() {
         }),
     )
 
+
+    workflowMapAPICreateIn := shared.WorkflowMapAPICreateIn{
+        From: "a1b2c3d4",
+        Relationship: shared.WorkflowMapAPICreateInRelationshipOneToMany,
+        To: "a1b2c3d4",
+    }
+
     ctx := context.Background()
-    res, err := s.WorkflowMap.Create(ctx, operations.CreateWorkflowMapRequest{
-        WorkflowMapAPICreateIn: shared.WorkflowMapAPICreateIn{
-            From: "a1b2c3d4",
-            Relationship: shared.WorkflowMapAPICreateInRelationshipOneToMany,
-            To: "a1b2c3d4",
-        },
-    })
+    res, err := s.WorkflowMap.Create(ctx, workflowMapAPICreateIn)
     if err != nil {
         log.Fatal(err)
     }
@@ -62,10 +62,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `request`                                                                                  | [operations.CreateWorkflowMapRequest](../../models/operations/createworkflowmaprequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `workflowMapAPICreateIn`                                                       | [shared.WorkflowMapAPICreateIn](../../models/shared/workflowmapapicreatein.md) | :heavy_check_mark:                                                             | N/A                                                                            |
 
 
 ### Response
@@ -89,7 +89,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -102,10 +101,11 @@ func main() {
         }),
     )
 
+
+    var id string = "program"
+
     ctx := context.Background()
-    res, err := s.WorkflowMap.Delete(ctx, operations.DeleteWorkflowMapRequest{
-        ID: "<ID>",
-    })
+    res, err := s.WorkflowMap.Delete(ctx, id)
     if err != nil {
         log.Fatal(err)
     }
@@ -118,10 +118,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `request`                                                                                  | [operations.DeleteWorkflowMapRequest](../../models/operations/deleteworkflowmaprequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | The unique ID of the workflow map                     |
 
 
 ### Response
@@ -145,7 +145,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -158,10 +157,11 @@ func main() {
         }),
     )
 
+
+    var id string = "gadzooks"
+
     ctx := context.Background()
-    res, err := s.WorkflowMap.Read(ctx, operations.ReadWorkflowMapRequest{
-        ID: "<ID>",
-    })
+    res, err := s.WorkflowMap.Read(ctx, id)
     if err != nil {
         log.Fatal(err)
     }
@@ -174,10 +174,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.ReadWorkflowMapRequest](../../models/operations/readworkflowmaprequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | The unique ID of the workflow map                     |
 
 
 ### Response
@@ -201,7 +201,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -214,8 +213,15 @@ func main() {
         }),
     )
 
+
+    var page *int = 853380
+
+    var size *int = 87498
+
+    var workflowID *string = "Reggae"
+
     ctx := context.Background()
-    res, err := s.WorkflowMap.ReadAll(ctx, operations.ReadAllWorkflowMapsRequest{})
+    res, err := s.WorkflowMap.ReadAll(ctx, page, size, workflowID)
     if err != nil {
         log.Fatal(err)
     }
@@ -228,10 +234,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
-| `request`                                                                                      | [operations.ReadAllWorkflowMapsRequest](../../models/operations/readallworkflowmapsrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                                                     | :heavy_check_mark:                                                                                                        | The context to use for the request.                                                                                       |
+| `page`                                                                                                                    | **int*                                                                                                                    | :heavy_minus_sign:                                                                                                        | The zero-indexed page number (must not be less than 0, defaults to 0)                                                     |
+| `size`                                                                                                                    | **int*                                                                                                                    | :heavy_minus_sign:                                                                                                        | The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)                 |
+| `workflowID`                                                                                                              | **string*                                                                                                                 | :heavy_minus_sign:                                                                                                        | The unique ID of a workflow where, if provided, the response will only contain workflow maps from the identified workflow |
 
 
 ### Response
@@ -255,7 +263,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -268,13 +275,15 @@ func main() {
         }),
     )
 
+
+    workflowMapAPIUpdateIn := shared.WorkflowMapAPIUpdateIn{
+        Relationship: shared.WorkflowMapAPIUpdateInRelationshipManyToMany,
+    }
+
+    var id string = "New"
+
     ctx := context.Background()
-    res, err := s.WorkflowMap.Update(ctx, operations.UpdateWorkflowMapRequest{
-        WorkflowMapAPIUpdateIn: shared.WorkflowMapAPIUpdateIn{
-            Relationship: shared.WorkflowMapAPIUpdateInRelationshipManyToMany,
-        },
-        ID: "<ID>",
-    })
+    res, err := s.WorkflowMap.Update(ctx, workflowMapAPIUpdateIn, id)
     if err != nil {
         log.Fatal(err)
     }
@@ -287,10 +296,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `request`                                                                                  | [operations.UpdateWorkflowMapRequest](../../models/operations/updateworkflowmaprequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `workflowMapAPIUpdateIn`                                                       | [shared.WorkflowMapAPIUpdateIn](../../models/shared/workflowmapapiupdatein.md) | :heavy_check_mark:                                                             | N/A                                                                            |
+| `id`                                                                           | *string*                                                                       | :heavy_check_mark:                                                             | The unique ID of the workflow map                                              |
 
 
 ### Response

@@ -30,7 +30,11 @@ func newApplication(sdkConfig sdkConfiguration) *application {
 // **Permissions:** [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 //
 // Create an application from a JSON request body.
-func (s *application) Create(ctx context.Context, request operations.CreateApplicationRequest) (*operations.CreateApplicationResponse, error) {
+func (s *application) Create(ctx context.Context, applicationAPICreateIn shared.ApplicationAPICreateIn) (*operations.CreateApplicationResponse, error) {
+	request := operations.CreateApplicationRequest{
+		ApplicationAPICreateIn: applicationAPICreateIn,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/applications"
 
@@ -103,7 +107,11 @@ func (s *application) Create(ctx context.Context, request operations.CreateAppli
 // **Permissions:** [Build Access to application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 //
 // Delete an application specified by the ID in the URL path.
-func (s *application) Delete(ctx context.Context, request operations.DeleteApplicationRequest) (*operations.DeleteApplicationResponse, error) {
+func (s *application) Delete(ctx context.Context, id string) (*operations.DeleteApplicationResponse, error) {
+	request := operations.DeleteApplicationRequest{
+		ID: id,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/applications/{id}", request, nil)
 	if err != nil {
@@ -169,7 +177,11 @@ func (s *application) Delete(ctx context.Context, request operations.DeleteAppli
 // **Permissions:** [Build Access to application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 //
 // Retrieve an application specified by the ID in the URL path.
-func (s *application) Read(ctx context.Context, request operations.ReadApplicationRequest) (*operations.ReadApplicationResponse, error) {
+func (s *application) Read(ctx context.Context, id string) (*operations.ReadApplicationResponse, error) {
+	request := operations.ReadApplicationRequest{
+		ID: id,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/applications/{id}", request, nil)
 	if err != nil {
@@ -235,7 +247,12 @@ func (s *application) Read(ctx context.Context, request operations.ReadApplicati
 // **Permissions:** [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 //
 // Retrieve a page of all applications that the current user has [Build Access](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications) to.
-func (s *application) ReadAll(ctx context.Context, request operations.ReadAllApplicationsRequest) (*operations.ReadAllApplicationsResponse, error) {
+func (s *application) ReadAll(ctx context.Context, page *int, size *int) (*operations.ReadAllApplicationsResponse, error) {
+	request := operations.ReadAllApplicationsRequest{
+		Page: page,
+		Size: size,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v2/applications"
 
@@ -302,7 +319,12 @@ func (s *application) ReadAll(ctx context.Context, request operations.ReadAllApp
 // **Permissions:** [Build Access to application](https://help.logicgate.com/hc/en-us/articles/4402683190164-Control-Build-Access-for-Applications)
 //
 // Update an application specified by the ID in the URL path from a JSON request body. Only present properties with non-empty values are updated.
-func (s *application) Update(ctx context.Context, request operations.Update1Request) (*operations.Update1Response, error) {
+func (s *application) Update(ctx context.Context, applicationAPIUpdateIn shared.ApplicationAPIUpdateIn, id string) (*operations.Update1Response, error) {
+	request := operations.Update1Request{
+		ApplicationAPIUpdateIn: applicationAPIUpdateIn,
+		ID:                     id,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/v2/applications/{id}", request, nil)
 	if err != nil {

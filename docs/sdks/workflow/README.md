@@ -29,7 +29,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -42,16 +41,17 @@ func main() {
         }),
     )
 
+
+    workflowAPICreateIn := shared.WorkflowAPICreateIn{
+        ApplicationID: "a1b2c3d4",
+        Name: "Risk Assessments",
+        RecordPrefix: "Assessment",
+        Xpos: logicgatedevsamplesdk.Int(20),
+        Ypos: logicgatedevsamplesdk.Int(20),
+    }
+
     ctx := context.Background()
-    res, err := s.Workflow.Create(ctx, operations.CreateWorkflowRequest{
-        WorkflowAPICreateIn: shared.WorkflowAPICreateIn{
-            ApplicationID: "a1b2c3d4",
-            Name: "Risk Assessments",
-            RecordPrefix: "Assessment",
-            Xpos: logicgatedevsamplesdk.Int(20),
-            Ypos: logicgatedevsamplesdk.Int(20),
-        },
-    })
+    res, err := s.Workflow.Create(ctx, workflowAPICreateIn)
     if err != nil {
         log.Fatal(err)
     }
@@ -64,10 +64,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.CreateWorkflowRequest](../../models/operations/createworkflowrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `workflowAPICreateIn`                                                    | [shared.WorkflowAPICreateIn](../../models/shared/workflowapicreatein.md) | :heavy_check_mark:                                                       | N/A                                                                      |
 
 
 ### Response
@@ -91,7 +91,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -104,10 +103,11 @@ func main() {
         }),
     )
 
+
+    var id string = "program"
+
     ctx := context.Background()
-    res, err := s.Workflow.Delete(ctx, operations.DeleteWorkflowRequest{
-        ID: "<ID>",
-    })
+    res, err := s.Workflow.Delete(ctx, id)
     if err != nil {
         log.Fatal(err)
     }
@@ -120,10 +120,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.DeleteWorkflowRequest](../../models/operations/deleteworkflowrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | The unique ID of the workflow                         |
 
 
 ### Response
@@ -147,7 +147,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -160,10 +159,11 @@ func main() {
         }),
     )
 
+
+    var id string = "gadzooks"
+
     ctx := context.Background()
-    res, err := s.Workflow.Read(ctx, operations.ReadWorkflowRequest{
-        ID: "<ID>",
-    })
+    res, err := s.Workflow.Read(ctx, id)
     if err != nil {
         log.Fatal(err)
     }
@@ -176,10 +176,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [operations.ReadWorkflowRequest](../../models/operations/readworkflowrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | The unique ID of the workflow                         |
 
 
 ### Response
@@ -203,7 +203,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -216,8 +215,17 @@ func main() {
         }),
     )
 
+
+    var applicationID *string = "Van"
+
+    var includeJiraWorkflows *bool = false
+
+    var page *int = 775284
+
+    var size *int = 45601
+
     ctx := context.Background()
-    res, err := s.Workflow.ReadAll(ctx, operations.ReadAllWorkflowsRequest{})
+    res, err := s.Workflow.ReadAll(ctx, applicationID, includeJiraWorkflows, page, size)
     if err != nil {
         log.Fatal(err)
     }
@@ -230,10 +238,13 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.ReadAllWorkflowsRequest](../../models/operations/readallworkflowsrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| Parameter                                                                                                                                            | Type                                                                                                                                                 | Required                                                                                                                                             | Description                                                                                                                                          |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                                                                | :heavy_check_mark:                                                                                                                                   | The context to use for the request.                                                                                                                  |
+| `applicationID`                                                                                                                                      | **string*                                                                                                                                            | :heavy_minus_sign:                                                                                                                                   | The unique ID of a parent application where, if provided, the response will only contain workflows from the identified application                   |
+| `includeJiraWorkflows`                                                                                                                               | **bool*                                                                                                                                              | :heavy_minus_sign:                                                                                                                                   | Whether [Jira workflows](https://help.logicgate.com/hc/en-us) are to be included in the response in addition to regular workflows (defaults to true) |
+| `page`                                                                                                                                               | **int*                                                                                                                                               | :heavy_minus_sign:                                                                                                                                   | The zero-indexed page number (must not be less than 0, defaults to 0)                                                                                |
+| `size`                                                                                                                                               | **int*                                                                                                                                               | :heavy_minus_sign:                                                                                                                                   | The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)                                            |
 
 
 ### Response
@@ -257,7 +268,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -270,16 +280,18 @@ func main() {
         }),
     )
 
+
+    workflowAPIUpdateIn := shared.WorkflowAPIUpdateIn{
+        Name: logicgatedevsamplesdk.String("Risk Assessments"),
+        RecordPrefix: logicgatedevsamplesdk.String("Assessment"),
+        Xpos: logicgatedevsamplesdk.Int(20),
+        Ypos: logicgatedevsamplesdk.Int(20),
+    }
+
+    var id string = "Van"
+
     ctx := context.Background()
-    res, err := s.Workflow.Update(ctx, operations.UpdateWorkflowRequest{
-        WorkflowAPIUpdateIn: shared.WorkflowAPIUpdateIn{
-            Name: logicgatedevsamplesdk.String("Risk Assessments"),
-            RecordPrefix: logicgatedevsamplesdk.String("Assessment"),
-            Xpos: logicgatedevsamplesdk.Int(20),
-            Ypos: logicgatedevsamplesdk.Int(20),
-        },
-        ID: "<ID>",
-    })
+    res, err := s.Workflow.Update(ctx, workflowAPIUpdateIn, id)
     if err != nil {
         log.Fatal(err)
     }
@@ -292,10 +304,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.UpdateWorkflowRequest](../../models/operations/updateworkflowrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `workflowAPIUpdateIn`                                                    | [shared.WorkflowAPIUpdateIn](../../models/shared/workflowapiupdatein.md) | :heavy_check_mark:                                                       | N/A                                                                      |
+| `id`                                                                     | *string*                                                                 | :heavy_check_mark:                                                       | The unique ID of the workflow                                            |
 
 
 ### Response

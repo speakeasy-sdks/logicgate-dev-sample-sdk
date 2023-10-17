@@ -30,7 +30,9 @@ func newAuthentication(sdkConfig sdkConfiguration) *authentication {
 // **Permissions:** Authenticated User
 //
 // Generates a new, expiring access token from the provided Client and Secret keys.
-func (s *authentication) GetAPIToken(ctx context.Context, request operations.GetAPITokenRequest, security operations.GetAPITokenSecurity) (*operations.GetAPITokenResponse, error) {
+func (s *authentication) GetAPIToken(ctx context.Context, security operations.GetAPITokenSecurity) (*operations.GetAPITokenResponse, error) {
+	request := operations.GetAPITokenRequest{}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/v1/account/token"
 

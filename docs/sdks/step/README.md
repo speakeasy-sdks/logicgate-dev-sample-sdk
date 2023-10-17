@@ -29,7 +29,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -42,18 +41,19 @@ func main() {
         }),
     )
 
+
+    stepAPICreateIn := shared.StepAPICreateIn{
+        AssignableUserType: shared.StepAPICreateInAssignableUserTypeAppUsers.ToPointer(),
+        EnableComments: logicgatedevsamplesdk.Bool(false),
+        ExternalUserMfaRequired: logicgatedevsamplesdk.Bool(false),
+        Name: "Identify Risk",
+        WorkflowID: "a1b2c3d4",
+        Xpos: logicgatedevsamplesdk.Int(20),
+        Ypos: logicgatedevsamplesdk.Int(20),
+    }
+
     ctx := context.Background()
-    res, err := s.Step.Create(ctx, operations.CreateStepRequest{
-        StepAPICreateIn: shared.StepAPICreateIn{
-            AssignableUserType: shared.StepAPICreateInAssignableUserTypeAppUsers.ToPointer(),
-            EnableComments: logicgatedevsamplesdk.Bool(false),
-            ExternalUserMfaRequired: logicgatedevsamplesdk.Bool(false),
-            Name: "Identify Risk",
-            WorkflowID: "a1b2c3d4",
-            Xpos: logicgatedevsamplesdk.Int(20),
-            Ypos: logicgatedevsamplesdk.Int(20),
-        },
-    })
+    res, err := s.Step.Create(ctx, stepAPICreateIn)
     if err != nil {
         log.Fatal(err)
     }
@@ -66,10 +66,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `request`                                                                    | [operations.CreateStepRequest](../../models/operations/createsteprequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| Parameter                                                        | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `ctx`                                                            | [context.Context](https://pkg.go.dev/context#Context)            | :heavy_check_mark:                                               | The context to use for the request.                              |
+| `stepAPICreateIn`                                                | [shared.StepAPICreateIn](../../models/shared/stepapicreatein.md) | :heavy_check_mark:                                               | N/A                                                              |
 
 
 ### Response
@@ -93,7 +93,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -106,10 +105,11 @@ func main() {
         }),
     )
 
+
+    var id string = "program"
+
     ctx := context.Background()
-    res, err := s.Step.Delete(ctx, operations.DeleteStepRequest{
-        ID: "<ID>",
-    })
+    res, err := s.Step.Delete(ctx, id)
     if err != nil {
         log.Fatal(err)
     }
@@ -122,10 +122,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `request`                                                                    | [operations.DeleteStepRequest](../../models/operations/deletesteprequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | The unique ID of the step                             |
 
 
 ### Response
@@ -149,7 +149,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -162,10 +161,11 @@ func main() {
         }),
     )
 
+
+    var id string = "gadzooks"
+
     ctx := context.Background()
-    res, err := s.Step.Read(ctx, operations.ReadStepRequest{
-        ID: "<ID>",
-    })
+    res, err := s.Step.Read(ctx, id)
     if err != nil {
         log.Fatal(err)
     }
@@ -178,10 +178,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
-| `request`                                                                | [operations.ReadStepRequest](../../models/operations/readsteprequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | The unique ID of the step                             |
 
 
 ### Response
@@ -205,7 +205,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -218,8 +217,15 @@ func main() {
         }),
     )
 
+
+    var page *int = 853380
+
+    var size *int = 87498
+
+    var workflowID *string = "Reggae"
+
     ctx := context.Background()
-    res, err := s.Step.ReadAll(ctx, operations.ReadAllStepsRequest{})
+    res, err := s.Step.ReadAll(ctx, page, size, workflowID)
     if err != nil {
         log.Fatal(err)
     }
@@ -232,10 +238,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [operations.ReadAllStepsRequest](../../models/operations/readallstepsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                             | [context.Context](https://pkg.go.dev/context#Context)                                                             | :heavy_check_mark:                                                                                                | The context to use for the request.                                                                               |
+| `page`                                                                                                            | **int*                                                                                                            | :heavy_minus_sign:                                                                                                | The zero-indexed page number (must not be less than 0, defaults to 0)                                             |
+| `size`                                                                                                            | **int*                                                                                                            | :heavy_minus_sign:                                                                                                | The size of the page and maximum number of items to be returned (must not be less than 1, defaults to 20)         |
+| `workflowID`                                                                                                      | **string*                                                                                                         | :heavy_minus_sign:                                                                                                | The unique ID of a workflow where, if provided, the response will only contain steps from the identified workflow |
 
 
 ### Response
@@ -259,7 +267,6 @@ import(
 	"log"
 	logicgatedevsamplesdk "github.com/speakeasy-sdks/logicgate-dev-sample-sdk"
 	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/logicgate-dev-sample-sdk/pkg/models/operations"
 )
 
 func main() {
@@ -272,19 +279,21 @@ func main() {
         }),
     )
 
+
+    stepAPIUpdateIn := shared.StepAPIUpdateIn{
+        AssignableUserType: shared.StepAPIUpdateInAssignableUserTypeAppUsers.ToPointer(),
+        EnableComments: logicgatedevsamplesdk.Bool(false),
+        ExternalUserMfaRequired: logicgatedevsamplesdk.Bool(false),
+        Name: logicgatedevsamplesdk.String("Identify Risk"),
+        Type: shared.StepAPIUpdateInTypeOrigin.ToPointer(),
+        Xpos: logicgatedevsamplesdk.Int(20),
+        Ypos: logicgatedevsamplesdk.Int(20),
+    }
+
+    var id string = "Van"
+
     ctx := context.Background()
-    res, err := s.Step.Update(ctx, operations.UpdateRequest{
-        StepAPIUpdateIn: shared.StepAPIUpdateIn{
-            AssignableUserType: shared.StepAPIUpdateInAssignableUserTypeAppUsers.ToPointer(),
-            EnableComments: logicgatedevsamplesdk.Bool(false),
-            ExternalUserMfaRequired: logicgatedevsamplesdk.Bool(false),
-            Name: logicgatedevsamplesdk.String("Identify Risk"),
-            Type: shared.StepAPIUpdateInTypeOrigin.ToPointer(),
-            Xpos: logicgatedevsamplesdk.Int(20),
-            Ypos: logicgatedevsamplesdk.Int(20),
-        },
-        ID: "<ID>",
-    })
+    res, err := s.Step.Update(ctx, stepAPIUpdateIn, id)
     if err != nil {
         log.Fatal(err)
     }
@@ -297,10 +306,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
-| `request`                                                            | [operations.UpdateRequest](../../models/operations/updaterequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
+| Parameter                                                        | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `ctx`                                                            | [context.Context](https://pkg.go.dev/context#Context)            | :heavy_check_mark:                                               | The context to use for the request.                              |
+| `stepAPIUpdateIn`                                                | [shared.StepAPIUpdateIn](../../models/shared/stepapiupdatein.md) | :heavy_check_mark:                                               | N/A                                                              |
+| `id`                                                             | *string*                                                         | :heavy_check_mark:                                               | The unique ID of the step                                        |
 
 
 ### Response
